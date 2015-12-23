@@ -1,0 +1,29 @@
+<h1>Listing domains</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t("domains.name") %></th>
+      <th><%= t("domains.words") %></th>
+      <th><%= t("domains.requests") %></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @domains.each do |domain| %>
+      <tr>
+        <td><%= domain.name %></td>
+        <td><%= domain.words %></td>
+        <td><%= domain.requests %></td>
+        <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
+        <td><%= link_to 'Destroy', domain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Domain', new_domain_path %>

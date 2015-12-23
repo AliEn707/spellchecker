@@ -1,0 +1,5 @@
+en:
+  domains:
+    created: Created
+    updated: Updated
+    destroyed: Destroyed

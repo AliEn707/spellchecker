@@ -1,0 +1,70 @@
+#!/bin/bash
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+#rvm use ruby-railsexpress
+
+RAILS_S_ROOT_DIR=/home/osuser/spellchecker
+
+RAILS_PID=/tmp/wss_spellchecker.pid
+
+export RAILS_ENV=production
+export RUBY_GC_HEAP_FREE_SLOTS=200000
+export RUBY_GC_MALLOC_LIMIT=60000000
+
+#export RAILS_WEBSERV=thin
+#export MEMSTORE_SIZE=384 
+#export USE_OJ=true 
+
+export RAILS_PEPPER=""
+export RAILS_SECRET=""
+export RECAPCHA_PUBLIC_KEY=""
+export RECAPCHA_PRIVATE_KEY=""
+export RAILS_LOG_MAIL=""
+export RAILS_MAIL_PASSWORD=""
+
+
+export UPDATE_DB=0 
+
+
+
+function rails() {
+  if [ "$1" = "start" ]; then
+     bundle exec rails server -d -p 4000 --pid=$RAILS_PID
+     return 0
+  elif [ "$1" = "stop" ]; then
+     if [ -f $RAILS_PID ]; then
+        kill $2 $(cat $RAILS_PID)
+	rm $RAILS_PID
+	echo "server stopped"
+#        return 0
+     else
+        echo "It seems there is no server running"
+#        return 1
+     fi
+     return 0
+  elif [ "$1" = "restart" ]; then
+     rails stop 
+     rails start $2
+  elif [ "$1" = "check" ]; then
+      if [ -f $RAILS_PID ]; then
+        RESULT=$(ps -A|grep $(cat $RAILS_PID)|head -1)
+        if [ -z "$RESULT" ]; then
+	  rm $RAILS_PID
+          rails start
+          echo "restarting"
+          return 1
+        fi
+      fi
+      echo "all Ok"
+      return 0
+ elif [ "$1" = "update" ]; then
+     rails stop
+     bash update.sh
+  else
+     bundle exec $@
+  fi;
+}
+
+
+cd $RAILS_S_ROOT_DIR
+rails $@
