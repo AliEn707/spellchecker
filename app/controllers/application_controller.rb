@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
 	
 	def set_locale
 		I18n.locale=cookies[:locale] if !cookies[:locale].nil?
-		p current_user
 		if !current_user.nil?
 			I18n.locale=current_user.locale
 			if !params[:locale].nil?

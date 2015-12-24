@@ -4,10 +4,10 @@ module OmniAuth
       option :name, :doorkeeper
 
       option :client_options, {
-        :site => "http://localhost:4000",
+        :site => ENV["CURRENT_APP_URL"] || "http://localhost:4000",
         :authorize_path => "/oauth/authorize"
       }
-	  option :authorize_params, { locale: "en"}
+	  option :authorize_params, { locale: "en", origin: ""}
 
       uid do
         raw_info["id"]
@@ -28,6 +28,7 @@ module OmniAuth
 		
 		def setup_phase
 				request.env['omniauth.strategy'].options[:authorize_params][:locale] = I18n.locale#request.params["locale"]
+				request.env['omniauth.strategy'].options[:authorize_params][:origin] = request.url[/[^\/]*\:\/\/[^\/]*/]
 		end
     end
   end

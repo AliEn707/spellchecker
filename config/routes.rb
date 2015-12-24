@@ -9,4 +9,5 @@ Spellchecker::Application.routes.draw do
 	devise_scope :user do
 		get 'sign_out', :to => 'users/sessions#destroy', :as => :destroy_user_session
 	end
+	get "locale", to: "application#set_locale"
 end
