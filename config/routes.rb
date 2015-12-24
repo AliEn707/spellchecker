@@ -7,6 +7,7 @@ Spellchecker::Application.routes.draw do
 	root 'main#index'
 	
 	post "api/check" => "spellcheck#check"
+	get "api/check" => "spellcheck#check"
   
 	devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 	devise_scope :user do

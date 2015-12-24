@@ -4,6 +4,14 @@ en:
       menu: Instalation
     api:
       menu: Api
+      translate_text_request: |
+        For translating set of words you can make POST or GET request to http://spellchecker.wsstudio.tk/api/check. You need to provide next information:
+      translate_text_response: |
+        In answer for that request you will get some data in JSON format. It will contain next fields:
+      translate_word_request: |
+        For translating single word you can make POST or GET request to http://spellchecker.wsstudio.tk/api/check. You need to provide next information:
+      translate_word_request: |
+        And answer for that request:
     languages: 
       menu: Languages
       available: This are all available languages

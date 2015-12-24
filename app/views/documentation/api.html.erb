@@ -1,2 +1,36 @@
-<h1>Documentation#api</h1>
-<p>Find me in app/views/documentation/api.html.erb</p>
+<h1><%= t("documentation.api.menu") %></h1>
+<p>
+	<%= t("documentation.api.translate_text_request") %>
+</p>
+POST/GET:
+<pre style="width:200px;"><code class="language-javascript">{
+	lang: "en"
+	text[]: "some+word"
+	text[]: "with+mistake"
+}
+</code></pre>
+<p>
+	<%= t("documentation.api.translate_text_response") %>
+</p>
+JSON:
+<pre style="width:330px;"><code class="language-javascript">{
+	"outcome": "success",
+	data: [["some","word"],["with","mistake"]]
+}
+</code></pre>
+
+<p>
+	<%= t("documentation.api.translate_word_request") %>
+</p>
+POST/GET:
+<pre style="width:120px;"><code class="language-javascript">{
+	lang: "en"
+	word: "some"
+}
+</code></pre>
+<p>
+	<%= t("documentation.api.translate_word_response") %>
+</p>
+JSON:
+<pre style="width:120px;"><code class="language-javascript">["1","2","3","4"]
+</code></pre>
