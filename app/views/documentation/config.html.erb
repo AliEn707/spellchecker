@@ -1,0 +1,24 @@
+<h1>Documentation#install</h1>
+<p>Find me in app/views/documentation/install.html.erb</p>
+Full configuration
+
+<pre><code class="javascript">{
+    lang: "<%= t("documentation.config.language") %>",
+    webservice: {
+      path: 'http://spellchecker.wsstudio.tk/api/check'
+    },
+    local: {
+      requestError: "<%= t("documentation.config.request_error") %>",
+      ignoreWord: "<%= t("documentation.config.ignore_word") %>",
+      ignoreAll: "<%= t("documentation.config.ignore_all") %>",
+      ignoreForever: "<%= t("documentation.config.ignore_forever") %>",
+      loading: "<%= t("documentation.config.loading") %>",
+      noSuggestions: "<%= t("documentation.config.no_suggestions") %>"
+    },
+    suggestBox: {
+      numWords: 5, //<%= t("documentation.config.num_words") %>
+      position: 'above',
+      offset: 2,
+      appendTo: null
+    }
+};</code></pre>
