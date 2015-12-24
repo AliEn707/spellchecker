@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap
+//= require prism
 // require_tree .

@@ -489,7 +489,8 @@
   };
 
   TextParser.prototype.replaceWordInText = function(oldWord, newWord, text) {
-    var regex = new RegExp('(^|[^' + letterChars + '])(' + RegExp.escape(oldWord) + ')(?=[^' + letterChars + ']|$)', 'g');
+	//MODIFIED BY Kirk Spencer
+    var regex = new RegExp('\\b(' + RegExp.escape(oldWord) + ')\\b', 'g');
     return (text + '').replace(regex, '$1' + newWord);
   };
 

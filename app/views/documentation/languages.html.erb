@@ -1,0 +1,111 @@
+<script type="text/javascript" src="/jquery.spellchecker.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/jquery.spellchecker.min.css" />
+<style type="text/css">
+  #text-content {width:400px;border:1px solid #888;padding:1em;margin:0 0 1em 0;}
+</style>
+<h1><%= t("documentation.languages.menu") %></h1>
+
+
+
+<table width="100%"><tr>
+	<td>
+		<%= t("documentation.languages.available") %>
+		<table>
+			<tr><td>
+				<table class="table table-bordered table-striped">
+					<tr>
+						<th><%= t("documentation.languages.code") %></th>
+						<th><%= t("documentation.languages.name") %></th>
+					</tr>
+						<% available_languages.each do |l| %>
+					<tr>
+							<td><%= t("langs.#{l}") %></td>
+							<td><%= l %></td>
+					</tr>
+						<% end %>
+				</table>
+			</td></tr>
+		</table>
+	</td>
+	<td align=center width="35%">
+		<div contenteditable=true id="text-content">
+		<%= t("documentation.languages.check_text").html_safe %>
+		</div>
+		<select id="language">
+			<% available_languages.each do |l| %>
+				<option value="<%= l %>" <%= "selected" if (l==I18n.locale.to_s) %>><%= t("langs.#{l}") %></option>
+			<% end %>
+		</select>
+		<button id="check-textarea">
+		  Check Spelling
+		</button>&nbsp;<br />
+		<%= t("documentation.languages.usage", set_lang: "spellchecker.setLang(lang)").html_safe %>
+		</div>
+	</td>
+	<td align=center width="35%">
+		<pre ><code class="language-javascript">(function() {
+  // Init the html spellchecker
+  var spellchecker = new $.SpellChecker('#text-content', {
+	lang: "en",
+	parser: 'html',
+	webservice: {
+	  path: '/api/check',
+	  driver: 'PSpell'
+	},
+	suggestBox: {
+	  position: 'below'
+	}
+  });
+
+  // Bind spellchecker handler functions
+  spellchecker.on('check.success', function() {
+	alert('There are no incorrectly spelt words!');
+  });
+  
+  // Check the spelling
+  $("#check-textarea").click(function(e){
+	spellchecker.check();
+  });
+  
+  // Change the language
+  $('#language').change(function() {
+	spellchecker.setLang(this.value);
+  }).trigger('change');
+
+})();</code></pre>  
+	</td>
+</tr></table>
+
+
+<script type="text/javascript">
+	(function() {
+		  // Init the html spellchecker
+		  var spellchecker = new $.SpellChecker('#text-content', {
+			lang: "en",
+			parser: 'html',
+			webservice: {
+			  path: '/api/check',
+			  driver: 'PSpell'
+			},
+			suggestBox: {
+			  position: 'below'
+			}
+		  });
+
+		  // Bind spellchecker handler functions
+		  spellchecker.on('check.success', function() {
+			alert('There are no incorrectly spelt words!');
+		  });
+		  
+		  // Check the spelling
+		  $("#check-textarea").click(function(e){
+			spellchecker.check();
+		  });
+		  
+		  // Change the language
+		  $('#language').change(function() {
+			spellchecker.setLang(this.value);
+		  }).trigger('change');
+		
+	})();
+</script>

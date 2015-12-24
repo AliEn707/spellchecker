@@ -11,7 +11,7 @@ class SpellcheckController < ApplicationController
 		'da'	=>'da_DK',
 		'de'	=>'de_DE_frami',
 		'el'	=>'el_GR',
-		'en'	=>'en_US',
+		'en'	=>'en_US_large',
 		'es'	=>'es_ES',
 		'et'	=>'et_EE',
 		'fr'	=>'fr',

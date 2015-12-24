@@ -1,0 +1,18 @@
+en:
+  documentation:
+    install:
+      menu: Instalation
+    api:
+      menu: Api
+    languages: 
+      menu: Languages
+      available: This are all available languages
+      code: Code
+      name: Name
+      check_text: |
+        This is a word that was writed with mistiake. And another words in this text may be writen with mistakes but it isn't very bad besouce our service show where thay are.
+      usage: |
+        Using SpellChecker plugin you available to choose language for checking. 
+        For that you must add to your page <code class="language-html">&lt;select&gt;</code>
+        element, and add to it action <code class="language-javascript"> %{set_lang} </code>
+        <br />Complete code example you can see in right column. 

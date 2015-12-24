@@ -1,4 +1,7 @@
 Spellchecker::Application.routes.draw do
+  get "documentation/install"
+  get "documentation/languages"
+  get "documentation/api"
   resources :domains
 
 	root 'main#index'
