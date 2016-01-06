@@ -57,7 +57,8 @@ gem 'omniauth-oauth2', '1.3.1'
 
 gem "twitter-bootstrap-rails", "2.2.8"
 
-gem "thin"
+#gem "thin"
+gem "puma"
 
 gem "simple_form"
 
